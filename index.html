@@ -246,9 +246,9 @@ tr:hover td { background: rgba(255,255,255,.03); }
       <div class="form-group">
         <label>Schwierigkeit</label>
         <select id="start-diff">
-          <option value="leicht">Leicht – Nur Typ</option>
-          <option value="mittel" selected>Mittel – Alle</option>
-          <option value="schwer">Schwer – Exakter Name</option>
+          <option value="leicht">🟢 Leicht</option>
+          <option value="mittel" selected>🟡 Mittel</option>
+          <option value="schwer">🔴 Schwer</option>
         </select>
       </div>
       <div class="form-group">
@@ -1112,7 +1112,7 @@ const QuizEngine = {
       const others = pool.filter(v => v.id !== vehicle.id);
       const wrong = this._shuffle(others).slice(0, 3);
       // Antwort-Text je nach Schwierigkeit
-      const answerText = v => options.diff === 'leicht' ? v.type : v.name;
+      const answerText = v => v.name;
       const answers = this._shuffle([vehicle, ...wrong]).map(v => ({
         id: v.id,
         text: answerText(v),

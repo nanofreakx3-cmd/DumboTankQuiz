@@ -246,9 +246,9 @@ tr:hover td { background: rgba(255,255,255,.03); }
       <div class="form-group">
         <label>Schwierigkeit</label>
         <select id="start-diff">
-          <option value="leicht">🟢 Leicht</option>
-          <option value="mittel" selected>🟡 Mittel</option>
-          <option value="schwer">🔴 Schwer</option>
+          <option value="leicht">Leicht – Nur Typ</option>
+          <option value="mittel" selected>Mittel – Alle</option>
+          <option value="schwer">Schwer – Exakter Name</option>
         </select>
       </div>
       <div class="form-group">
@@ -498,7 +498,7 @@ tr:hover td { background: rgba(255,255,255,.03); }
           <button class="btn btn-secondary btn-sm" style="flex-shrink:0;" onclick="AdminPanel.addImageUrl()">Hinzufügen</button>
         </div>
         <p style="font-size:.75rem;color:var(--text-dim);margin-top:6px;margin-bottom:0;">
-          Tipp: Bilder im Repo liegen unter <code>img/s023_T-72/leicht/bild.jpg</code> – diese URL einfach so eingeben. Oder volle GitHub-Pages-URL: <code>https://BravoKilo27.github.io/DumboTankQuiz/img/s023_T-72/leicht/bild.jpg</code>
+          Tipp: Lade Bilder in deinem GitHub-Repo in den Ordner <code>img/</code> hoch → URL: <code>img/dateiname.jpg</code> (relativ) oder volle URL
         </p>
       </div>
       <!-- Datei-Upload (für einzelne Bilder / lokale Tests) -->
@@ -601,14 +601,6 @@ const SVG_PLACEHOLDER = (name, color) => {
 // Vordefinierte Fahrzeuge – UdSSR / Russland (vollständige Datenbank)
 const DEFAULT_VEHICLES = [
   // ── WW2 ──────────────────────────────────────────────────────────────────
-  { id:'s005', name:'T-60',               type:'MBT',           nation:'UdSSR',       era:'WW2',          diff:'leicht',
-    weapon:'20-mm-TNSch-1-Maschinenkanone, 7,62-mm-DT-MG',
-    armor:'Front: 35 mm, Seite: 25 mm, Turm: 25 mm',
-    desc:'Der T-60 leichter Panzer wurde als Ersatz für den T-26 eingeführt. Einfach zu bauen und zu warten, war er in der Infanterieunterstützung nützlich, gegen Panzer aber nahezu machtlos. Gebaut in Traktorenwerken mitten im Krieg.' },
-  { id:'s006', name:'T-70',               type:'MBT',           nation:'UdSSR',       era:'WW2',          diff:'leicht',
-    weapon:'45-mm-20K-Kanone, 7,62-mm-DT-MG',
-    armor:'Front: 45 mm, Seite: 35 mm, Turm: 35 mm',
-    desc:'Der T-70 war der meistproduzierte sowjetische Leichtpanzer (8.226 Stück). Trotz seiner limitierten Kampfkraft spielte er eine wichtige Rolle bei der Panzerunterstützung der Infanterie bis 1943, als er durch schwerere Typen ersetzt wurde.' },
 
   // ── KALTER KRIEG ─────────────────────────────────────────────────────────
   { id:'v008', name:'BMP-2',              type:'IFV',   nation:'UdSSR',       era:'Kalter Krieg', diff:'mittel',
@@ -838,7 +830,7 @@ const DEFAULT_VEHICLES = [
 ];
 
 // Eingebettete Bilder – wird beim Admin-Export befüllt; alle Nutzer sehen dieselben Bilder
-const BAKED_IMAGES = {"s021":[{"src":"img/s021_T-62/leicht/s021_S_04.jpg","diff":"leicht"},{"src":"img/s021_T-62/leicht/s021_S_06.jpg","diff":"leicht"},{"src":"img/s021_T-62/leicht/s021_S_07.jpg","diff":"leicht"},{"src":"img/s021_T-62/leicht/s021_S_17.jpg","diff":"leicht"}],"s023":[{"src":"img/s023_T-72/leicht/s023_L_02.jpg","diff":"leicht"},{"src":"img/s023_T-72/leicht/s023_L_15.jpg","diff":"leicht"},{"src":"img/s023_T-72/leicht/s023_L_17.jpg","diff":"leicht"},{"src":"img/s023_T-72/leicht/s023_S_03.jpg","diff":"leicht"}],"s025":[{"src":"img/s025_BMP-1/leicht/s025_L_01.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/leicht/s025_L_02.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/leicht/s025_L_04.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/leicht/s025_L_08.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/leicht/s025_L_13.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/leicht/s025_L_16.jpg","diff":"leicht"},{"src":"img/s025_BMP-1/mittel/s025_L_19.jpg","diff":"mittel"},{"src":"img/s025_BMP-1/mittel/s025_S_04.jpg","diff":"mittel"},{"src":"img/s025_BMP-1/mittel/s025_S_13.jpg","diff":"mittel"},{"src":"img/s025_BMP-1/mittel/s025_S_16.jpeg","diff":"mittel"},{"src":"img/s025_BMP-1/schwer/bmp1.png","diff":"schwer"}],"s026":[{"src":"img/s026_BTR-60/leicht/s026_L_07.jpg","diff":"leicht"},{"src":"img/s026_BTR-60/leicht/s026_L_08.jpg","diff":"leicht"},{"src":"img/s026_BTR-60/leicht/s026_L_13.jpg","diff":"leicht"},{"src":"img/s026_BTR-60/leicht/s026_L_15.jpg","diff":"leicht"},{"src":"img/s026_BTR-60/leicht/s026_L_17.jpg","diff":"leicht"},{"src":"img/s026_BTR-60/mittel/s026_L_12.jpg","diff":"mittel"},{"src":"img/s026_BTR-60/mittel/s026_L_16.jpg","diff":"mittel"},{"src":"img/s026_BTR-60/mittel/s026_S_17.jpg","diff":"mittel"}],"s027":[{"src":"img/s027_BTR-80/leicht/s027_L_03.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_04.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_07.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_13.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_14.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_15.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/leicht/s027_L_17.jpg","diff":"leicht"},{"src":"img/s027_BTR-80/mittel/s027_L_02.jpg","diff":"mittel"},{"src":"img/s027_BTR-80/mittel/s027_S_04.jpg","diff":"mittel"},{"src":"img/s027_BTR-80/mittel/s027_S_18.jpg","diff":"mittel"}],"s028":[{"src":"img/s028_BRDM-2/leicht/s028_L_02.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/leicht/s028_L_03.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/leicht/s028_L_07.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/leicht/s028_L_08.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/leicht/s028_L_13.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/leicht/s028_L_16.jpg","diff":"leicht"},{"src":"img/s028_BRDM-2/mittel/s028_S_02.jpg","diff":"mittel"},{"src":"img/s028_BRDM-2/mittel/s028_S_05.jpg","diff":"mittel"},{"src":"img/s028_BRDM-2/mittel/s028_S_19.jpg","diff":"mittel"}],"s030":[{"src":"img/s030_2S1_Gwosdika/leicht/s030_L_01.jpg","diff":"leicht"},{"src":"img/s030_2S1_Gwosdika/leicht/s030_L_04.jpg","diff":"leicht"},{"src":"img/s030_2S1_Gwosdika/leicht/s030_L_12.jpg","diff":"leicht"},{"src":"img/s030_2S1_Gwosdika/leicht/s030_L_15.jpg","diff":"leicht"},{"src":"img/s030_2S1_Gwosdika/leicht/s030_L_19.jpg","diff":"leicht"},{"src":"img/s030_2S1_Gwosdika/mittel/Screenshot 2026-05-14 041906.png","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/mittel/s030_L_09.jpg","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/mittel/s030_L_13.jpg","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/mittel/s030_L_18.jpg","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/mittel/s030_S_01.jpg","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/mittel/s030_S_14.jpg","diff":"mittel"},{"src":"img/s030_2S1_Gwosdika/schwer/s030_S_04.jpg","diff":"schwer"}],"s034":[{"src":"img/s034_T-90/leicht/2013_Moscow_Victory_Day_Parade_(28).jpg","diff":"leicht"},{"src":"img/s034_T-90/leicht/istockphoto-152161542-1024x1024.jpg","diff":"leicht"},{"src":"img/s034_T-90/leicht/russian-tanks-moving-towards-ukraine-including-t90a-thats-a-v0-f8cbabrq9dk81.webp","diff":"leicht"},{"src":"img/s034_T-90/leicht/t-90a_2.jpg","diff":"leicht"},{"src":"img/s034_T-90/mittel/0x0.jpg","diff":"mittel"},{"src":"img/s034_T-90/mittel/10764427efa288b6.jpg","diff":"mittel"},{"src":"img/s034_T-90/mittel/53f634858bd2c6ab.jpg","diff":"mittel"},{"src":"img/s034_T-90/mittel/military-tank-russian-army-t-90-wallpaper-preview.jpg","diff":"mittel"},{"src":"img/s034_T-90/mittel/pvtm3z6hbay41.jpg","diff":"mittel"},{"src":"img/s034_T-90/mittel/t90a.png","diff":"mittel"},{"src":"img/s034_T-90/mittel/t90a2.png","diff":"mittel"},{"src":"img/s034_T-90/schwer/481918043_1057952356367246_5477088597140099595_n.jpg","diff":"schwer"},{"src":"img/s034_T-90/schwer/c8houj6zk6pb1.jpg","diff":"schwer"}],"s035":[{"src":"img/s035_T-90M_Proryv/leicht/Russia_Delivers_New_Batch_of_T-90M_Proryv_Tanks_to_Russian_Army_for_Deployment_in_Ukraine_Breaking_News_925_001-64d8609b.jpg","diff":"leicht"},{"src":"img/s035_T-90M_Proryv/leicht/a7bd0a7b6cdeb10a4348fd137d33f4d6.jpg","diff":"leicht"},{"src":"img/s035_T-90M_Proryv/leicht/brand-new-t-90m-from-uralvagonzavod-lack-of-aps-is-v0-r47ph4et8i2e1.jpg","diff":"leicht"},{"src":"img/s035_T-90M_Proryv/leicht/t900m.jpg","diff":"leicht"},{"src":"img/s035_T-90M_Proryv/leicht/your-non-political-opinion-about-the-t-90m-v0-3ms6zldnwede1.jpg","diff":"leicht"},{"src":"img/s035_T-90M_Proryv/mittel/482319857_655908233480372_6282524464963160030_n.jpg","diff":"mittel"},{"src":"img/s035_T-90M_Proryv/mittel/80th-Air-Assault-Brigade-T-90M-2048x1152.jpg","diff":"mittel"},{"src":"img/s035_T-90M_Proryv/mittel/Russian-T-90M-Tank-in-Ukraine-War.jpg","diff":"mittel"},{"src":"img/s035_T-90M_Proryv/mittel/f24a1f3b-ba6a-40e5-9314-68bfe9e6e2ec_1350x707.jpg","diff":"mittel"},{"src":"img/s035_T-90M_Proryv/mittel/f9a66c1ff717a46b.jpg","diff":"mittel"},{"src":"img/s035_T-90M_Proryv/schwer/484518445_9685075724941290_6410156868336458610_n.jpg","diff":"schwer"},{"src":"img/s035_T-90M_Proryv/schwer/FlF2kc1WIAIkMdO.jpg","diff":"schwer"},{"src":"img/s035_T-90M_Proryv/schwer/Screenshot 2026-05-12 at 16-21-47 T-90M r_TankPorn.png","diff":"schwer"}],"s036":[{"src":"img/s036_T-80U/leicht/s036_L_07.jpg","diff":"leicht"},{"src":"img/s036_T-80U/leicht/s036_L_08.jpg","diff":"leicht"},{"src":"img/s036_T-80U/leicht/s036_L_14.jpg","diff":"leicht"},{"src":"img/s036_T-80U/leicht/s036_L_20.jpg","diff":"leicht"},{"src":"img/s036_T-80U/mittel/s036_L_09.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_L_10.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_L_17.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_S_01.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_S_03.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_S_15.jpg","diff":"mittel"},{"src":"img/s036_T-80U/mittel/s036_S_17.jpg","diff":"mittel"}],"s037":[{"src":"img/s037_T-80BVM/leicht/Screenshot 2026-05-14 043856.png","diff":"leicht"},{"src":"img/s037_T-80BVM/leicht/Screenshot 2026-05-14 043944.png","diff":"leicht"},{"src":"img/s037_T-80BVM/leicht/s037_S_08.jpg","diff":"leicht"},{"src":"img/s037_T-80BVM/leicht/s037_S_19.jpg","diff":"leicht"},{"src":"img/s037_T-80BVM/mittel/s037_S_01.jpg","diff":"mittel"},{"src":"img/s037_T-80BVM/mittel/s037_S_03.jpg","diff":"mittel"},{"src":"img/s037_T-80BVM/mittel/s037_S_09.jpg","diff":"mittel"},{"src":"img/s037_T-80BVM/mittel/s037_S_14.jpg","diff":"mittel"},{"src":"img/s037_T-80BVM/mittel/s037_S_20.jpg","diff":"mittel"}],"s038":[{"src":"img/s038_T-14_Armata/leicht/s038_L_02.jpg","diff":"leicht"},{"src":"img/s038_T-14_Armata/leicht/s038_L_06.jpg","diff":"leicht"},{"src":"img/s038_T-14_Armata/leicht/s038_L_08.jpg","diff":"leicht"},{"src":"img/s038_T-14_Armata/leicht/s038_L_11.jpg","diff":"leicht"},{"src":"img/s038_T-14_Armata/leicht/s038_L_18.jpg","diff":"leicht"},{"src":"img/s038_T-14_Armata/mittel/Screenshot 2026-05-14 044403.png","diff":"mittel"},{"src":"img/s038_T-14_Armata/mittel/Screenshot 2026-05-14 044431.png","diff":"mittel"},{"src":"img/s038_T-14_Armata/mittel/s038_L_19.jpg","diff":"mittel"}],"s039":[{"src":"img/s039_BMP-3/leicht/s039_S_03.jpg","diff":"leicht"},{"src":"img/s039_BMP-3/leicht/s039_S_04.jpg","diff":"leicht"},{"src":"img/s039_BMP-3/leicht/s039_S_05.jpg","diff":"leicht"},{"src":"img/s039_BMP-3/leicht/s039_S_15.jpg","diff":"leicht"}],"s040":[{"src":"img/s040_BTR-82A/leicht/s040_L_01.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/leicht/s040_L_02.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/leicht/s040_L_13.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/leicht/s040_L_14.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/leicht/s040_L_18.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/leicht/s040_L_19.jpg","diff":"leicht"},{"src":"img/s040_BTR-82A/mittel/s040_S_05.jpg","diff":"mittel"},{"src":"img/s040_BTR-82A/mittel/s040_S_15.jpg","diff":"mittel"}],"s041":[{"src":"img/s041_2S19_Msta-S/leicht/s041_L_01.jpg","diff":"leicht"},{"src":"img/s041_2S19_Msta-S/leicht/s041_L_02.jpg","diff":"leicht"},{"src":"img/s041_2S19_Msta-S/leicht/s041_L_05.jpg","diff":"leicht"},{"src":"img/s041_2S19_Msta-S/leicht/s041_L_09.jpg","diff":"leicht"},{"src":"img/s041_2S19_Msta-S/leicht/s041_L_12.jpg","diff":"leicht"},{"src":"img/s041_2S19_Msta-S/leicht/s041_S_11.jpg","diff":"leicht"}],"s044":[{"src":"img/s044_BMPT_Terminator/leicht/s044_L_04.jpg","diff":"leicht"},{"src":"img/s044_BMPT_Terminator/leicht/s044_L_11.jpg","diff":"leicht"},{"src":"img/s044_BMPT_Terminator/leicht/s044_L_13.jpg","diff":"leicht"},{"src":"img/s044_BMPT_Terminator/leicht/s044_L_16.jpg","diff":"leicht"},{"src":"img/s044_BMPT_Terminator/leicht/s044_L_18.jpg","diff":"leicht"},{"src":"img/s044_BMPT_Terminator/mittel/Screenshot 2026-05-14 043141.png","diff":"mittel"},{"src":"img/s044_BMPT_Terminator/mittel/Screenshot 2026-05-14 043228.png","diff":"mittel"},{"src":"img/s044_BMPT_Terminator/mittel/Screenshot 2026-05-14 043401.png","diff":"mittel"},{"src":"img/s044_BMPT_Terminator/schwer/Screenshot 2026-05-14 043258.png","diff":"schwer"}],"s047":[{"src":"img/s047_BMP-2M/leicht/s047_L_02.jpg","diff":"leicht"},{"src":"img/s047_BMP-2M/leicht/s047_L_03.jpg","diff":"leicht"},{"src":"img/s047_BMP-2M/leicht/s047_L_05.jpg","diff":"leicht"},{"src":"img/s047_BMP-2M/leicht/s047_L_09.jpg","diff":"leicht"},{"src":"img/s047_BMP-2M/leicht/s047_L_11.jpg","diff":"leicht"},{"src":"img/s047_BMP-2M/leicht/s047_L_14.jpg","diff":"leicht"}],"s048":[{"src":"img/s048_BMR-2/leicht/s048_L_01.jpg","diff":"leicht"},{"src":"img/s048_BMR-2/leicht/s048_L_08.jpg","diff":"leicht"},{"src":"img/s048_BMR-2/leicht/s048_L_13.jpg","diff":"leicht"},{"src":"img/s048_BMR-2/mittel/s048_S_05.jpg","diff":"mittel"},{"src":"img/s048_BMR-2/mittel/s048_S_08.jpg","diff":"mittel"},{"src":"img/s048_BMR-2/mittel/s048_S_14.jpg","diff":"mittel"}],"s049":[{"src":"img/s049_BMR-3/leicht/s049_L_01.jpg","diff":"leicht"},{"src":"img/s049_BMR-3/leicht/s049_L_03.jpg","diff":"leicht"},{"src":"img/s049_BMR-3/leicht/s049_L_05.jpg","diff":"leicht"},{"src":"img/s049_BMR-3/leicht/s049_L_09.jpg","diff":"leicht"}],"u002":[{"src":"img/u002_T-72B/leicht/u002_L_02.jpg","diff":"leicht"},{"src":"img/u002_T-72B/leicht/u002_L_05.jpg","diff":"leicht"},{"src":"img/u002_T-72B/leicht/u002_L_06.jpg","diff":"leicht"},{"src":"img/u002_T-72B/leicht/u002_L_12.jpg","diff":"leicht"},{"src":"img/u002_T-72B/leicht/u002_S_16.jpg","diff":"leicht"},{"src":"img/u002_T-72B/mittel/u002_L_09.jpg","diff":"mittel"},{"src":"img/u002_T-72B/mittel/u002_S_09.jpg","diff":"mittel"}],"u005":[{"src":"img/u005_BMD-2/leicht/Screenshot 2026-05-14 041401.png","diff":"leicht"},{"src":"img/u005_BMD-2/leicht/u005_L_01.jpg","diff":"leicht"},{"src":"img/u005_BMD-2/leicht/u005_L_04.jpg","diff":"leicht"},{"src":"img/u005_BMD-2/leicht/u005_L_14.jpg","diff":"leicht"},{"src":"img/u005_BMD-2/leicht/u005_L_16.jpg","diff":"leicht"},{"src":"img/u005_BMD-2/leicht/u005_S_08.jpg","diff":"leicht"}],"u006":[{"src":"img/u006_BMD-4M/leicht/u006_L_03.jpg","diff":"leicht"},{"src":"img/u006_BMD-4M/leicht/u006_L_04.jpg","diff":"leicht"},{"src":"img/u006_BMD-4M/leicht/u006_L_09.jpg","diff":"leicht"},{"src":"img/u006_BMD-4M/leicht/u006_L_15.jpg","diff":"leicht"},{"src":"img/u006_BMD-4M/leicht/u006_L_16.jpg","diff":"leicht"},{"src":"img/u006_BMD-4M/mittel/u006_L_07.jpg","diff":"mittel"},{"src":"img/u006_BMD-4M/mittel/u006_L_19.jpg","diff":"mittel"},{"src":"img/u006_BMD-4M/mittel/u006_S_11.jpg","diff":"mittel"}],"u009":[{"src":"img/u009_BM-21_Grad/mittel/bm21 grad.png","diff":"mittel"},{"src":"img/u009_BM-21_Grad/schwer/bm21grad2.png","diff":"schwer"}],"u010":[{"src":"img/u010_BM-27_Uragan/leicht/u010_L_07.jpg","diff":"leicht"},{"src":"img/u010_BM-27_Uragan/leicht/u010_L_09.jpg","diff":"leicht"},{"src":"img/u010_BM-27_Uragan/leicht/u010_L_14.webp","diff":"leicht"},{"src":"img/u010_BM-27_Uragan/leicht/u010_L_17.jpg","diff":"leicht"},{"src":"img/u010_BM-27_Uragan/leicht/u010_L_20.jpg","diff":"leicht"},{"src":"img/u010_BM-27_Uragan/schwer/Bm27.png","diff":"schwer"}],"u011":[{"src":"img/u011_BM-30_Smerch/leicht/u011_L_07.jpg","diff":"leicht"},{"src":"img/u011_BM-30_Smerch/leicht/u011_L_13.jpg","diff":"leicht"},{"src":"img/u011_BM-30_Smerch/leicht/u011_L_14.jpg","diff":"leicht"},{"src":"img/u011_BM-30_Smerch/leicht/u011_L_15.jpg","diff":"leicht"}],"v008":[{"src":"img/v008_BMP-2/leicht/v008_S_01.jpg","diff":"leicht"},{"src":"img/v008_BMP-2/leicht/v008_S_05.jpg","diff":"leicht"},{"src":"img/v008_BMP-2/leicht/v008_S_06.jpg","diff":"leicht"},{"src":"img/v008_BMP-2/leicht/v008_S_08.jpg","diff":"leicht"},{"src":"img/v008_BMP-2/leicht/v008_S_17.jpg","diff":"leicht"},{"src":"img/v008_BMP-2/mittel/v008_S_03.jpeg","diff":"mittel"},{"src":"img/v008_BMP-2/mittel/v008_S_07.jpg","diff":"mittel"},{"src":"img/v008_BMP-2/mittel/v008_S_18.jpg","diff":"mittel"}]};
+const BAKED_IMAGES = {};
 
 // ===================== STORAGE-MODUL =====================
 const Storage = {
@@ -1016,7 +1008,7 @@ window.tankDB = {
     const REMOVED_IDS = new Set(['v001','v002','v004','v005','v006','v007','v009','v010',
       's008','s009','s010','s011','s012','s013','s014','s015','s016','s017','s018',
       's001','s002','s003','s004','s032','u004',
-      'v003','s007']);
+      'v003','s007','s005','s006']);
     let data = Storage.loadVehicles();
     if (!data || data.length === 0) {
       this.vehicles = DEFAULT_VEHICLES.map(v => ({ ...v }));
@@ -1068,6 +1060,17 @@ window.tankDB = {
     if (options.categories && options.categories.length > 0) {
       pool = pool.filter(v => options.categories.includes(v.type));
     }
+    if (options.diff) {
+      const FALLBACK = { leicht: 'mittel', mittel: 'leicht', schwer: 'mittel' };
+      const exact = pool.filter(v => v.diff === options.diff);
+      if (exact.length >= 4) {
+        pool = exact;
+      } else {
+        const fb = FALLBACK[options.diff];
+        const extended = pool.filter(v => v.diff === options.diff || v.diff === fb);
+        pool = extended.length >= 4 ? extended : pool;
+      }
+    }
     return pool;
   },
 
@@ -1101,7 +1104,7 @@ const QuizEngine = {
       const others = pool.filter(v => v.id !== vehicle.id);
       const wrong = this._shuffle(others).slice(0, 3);
       // Antwort-Text je nach Schwierigkeit
-      const answerText = v => v.name;
+      const answerText = v => options.diff === 'leicht' ? v.type : v.name;
       const answers = this._shuffle([vehicle, ...wrong]).map(v => ({
         id: v.id,
         text: answerText(v),
@@ -1347,7 +1350,7 @@ const AdminPanel = {
       wrap.className = 'img-thumb';
       const d = img.diff || 'mittel';
       wrap.innerHTML = `
-        <img src="${img.src}" alt="Bild ${idx+1}" onerror="this.style.opacity='.3';this.title='Bild nicht gefunden: '+this.src;this.parentElement.style.border='2px solid #c0392b'">
+        <img src="${img.src}" alt="Bild ${idx+1}">
         <select class="img-diff-sel" title="Schwierigkeit dieses Bildes"
           onchange="AdminPanel.setImageDiff('${id}', ${idx}, this.value)">
           <option value="leicht"${d==='leicht'?' selected':''}>🟢 Leicht</option>
@@ -1709,7 +1712,6 @@ const UI = {
       imgSrc = SVG_PLACEHOLDER(q.vehicle.name, '#4a5230');
     }
     const img = document.getElementById('vehicle-img');
-    img.onerror = () => { img.src = SVG_PLACEHOLDER(q.vehicle.name, '#4a5230'); };
     img.src = imgSrc;
     document.getElementById('vehicle-img-wrap').classList.remove('revealed');
 

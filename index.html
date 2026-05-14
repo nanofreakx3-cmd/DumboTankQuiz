@@ -1073,8 +1073,7 @@ const QuizEngine = {
       const fromDiff = diffType.slice(0, 3 - fromSame.length);
       const extra = sameType.slice(fromSame.length);
       const wrong = this._shuffle([...fromSame, ...fromDiff, ...extra]).slice(0, 3);
-      // Antwort-Text je nach Schwierigkeit
-      const answerText = v => options.diff === 'leicht' ? v.type : v.name;
+      const answerText = v => v.name;
       const answers = this._shuffle([vehicle, ...wrong]).map(v => ({
         id: v.id,
         text: answerText(v),

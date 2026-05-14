@@ -611,14 +611,6 @@ const DEFAULT_VEHICLES = [
     weapon:'73-mm-2A28-Grom-Glattrohr, 9M14-Maljutka-ATGM, 7,62-mm-PKT',
     armor:'Front: 19 mm, Seite: 16 mm – Schutz gegen Kleinwaffen und Splitter',
     desc:'Der BMP-1 war 1966 weltweit der erste in Serie gefertigte Schützenpanzer und revolutionierte das Konzept der kombinierten Waffen. Die Besatzung konnte durch Schießscharten kämpfen, während das Fahrzeug in Deckung fuhr.' },
-  { id:'s019', name:'T-54',               type:'MBT',           nation:'UdSSR',       era:'Kalter Krieg', diff:'mittel',
-    weapon:'100-mm-D-10T-Kanone, 2× 7,62-mm-SGMT, 12,7-mm-DShK',
-    armor:'Front: 100 mm (60° geneigt ≈ 200 mm effektiv), Seite: 80 mm, Turm: hemispherisch 200 mm',
-    desc:'Der T-54 war ab 1949 das Rückgrat aller Warschauer-Pakt-Armeen und wurde mit über 86.000 Einheiten (T-54/55 zusammen) zum meistproduziertenPanzer der Geschichte. Er nahm an fast jedem Konflikt der Nachkriegszeit teil.' },
-  { id:'s020', name:'T-55',               type:'MBT',           nation:'UdSSR',       era:'Kalter Krieg', diff:'mittel',
-    weapon:'100-mm-D-10T2S-Kanone, 7,62-mm-SGMT, 12,7-mm-DShK',
-    armor:'Front: 100 mm (60° geneigt), Seite: 80 mm, Turm-Front: 200 mm; ABC-Schutz integriert',
-    desc:'Der T-55 (1958) war der erste Serienkreatpanzer der Welt mit vollständigem ABC-Schutzsystem. Eine Tauchausrüstung (OPVT) ermöglichte das Unterqueren von Flüssen bis 5 m Tiefe. Er ist bis heute in zahlreichen Armeen aktiv.' },
   { id:'s021', name:'T-62',               type:'MBT',           nation:'UdSSR',       era:'Kalter Krieg', diff:'mittel',
     weapon:'115-mm-U-5TS-Glattrohrkanone (erste Serienglattrohr weltweit), 7,62-mm-PKMT',
     armor:'Front: 100 mm (60° geneigt), Seite: 80 mm, Turm-Front: 242 mm',
@@ -1008,7 +1000,7 @@ window.tankDB = {
     const REMOVED_IDS = new Set(['v001','v002','v004','v005','v006','v007','v009','v010',
       's008','s009','s010','s011','s012','s013','s014','s015','s016','s017','s018',
       's001','s002','s003','s004','s032','u004',
-      'v003','s007','s005','s006']);
+      'v003','s007','s005','s006','s019','s020']);
     let data = Storage.loadVehicles();
     if (!data || data.length === 0) {
       this.vehicles = DEFAULT_VEHICLES.map(v => ({ ...v }));
